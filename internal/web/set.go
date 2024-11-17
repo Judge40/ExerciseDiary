@@ -41,6 +41,13 @@ func setHandler(c *gin.Context) {
 
 	db.BulkDeleteSetsByDate(appConfig.DBPath, date)
 	db.BulkAddSets(appConfig.DBPath, formData)
+
+	_, setAsDefault := formMap["setAsDefault"]
+
+	if setAsDefault {
+		db.BulkUpdateExDefaults(appConfig.DBPath, formData)
+	}
+
 	exData.Sets = db.SelectSet(appConfig.DBPath)
 
 	// log.Println("FORM DATA:", formData)

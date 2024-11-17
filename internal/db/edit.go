@@ -55,6 +55,15 @@ func InsertEx(path string, ex models.Exercise) {
 	exec(path, sqlStatement)
 }
 
+// UpdateExDefaults - update the exercise defaults in DB
+func UpdateExDefaults(path string, ex models.Set) {
+	sqlStatement := `UPDATE exercises SET WEIGHT='%v', REPS='%d' WHERE NAME='%s';`
+
+	sqlStatement = fmt.Sprintf(sqlStatement, ex.Weight, ex.Reps, ex.Name)
+
+	exec(path, sqlStatement)
+}
+
 // InsertSet - insert one set into DB
 func InsertSet(path string, ex models.Set) {
 

@@ -13,6 +13,16 @@ func BulkAddSets(path string, allExs []models.Set) {
 	}
 }
 
+// BulkUpdateExDefaults - update exercise defaults
+func BulkUpdateExDefaults(path string, allSets []models.Set) {
+	var oneSet models.Set
+
+	for _, oneSet = range allSets {
+		
+		UpdateExDefaults(path, oneSet)
+	}
+}
+
 // BulkDeleteSetsByDate - delete all Sets with date
 func BulkDeleteSetsByDate(path, date string) {
 	var oneEx models.Set
